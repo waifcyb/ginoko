@@ -1,3 +1,6 @@
+/* ===========================
+   General Styles
+   =========================== */
 body {
   background-color: #fff6f6;
   font-family: "Comic Sans MS", "Marker Felt", sans-serif;
@@ -8,13 +11,32 @@ body {
   color: #836953;
 }
 
+h1 {
+  color: #ff86b3;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 2.5em;
+  text-shadow: 2px 2px 0 #fff, 3px 3px 0 #ffd1dc;
+  transform: rotate(1deg);
+}
+
+/* ===========================
+   Paper Container
+   =========================== */
 .paper-container {
   background-color: #fffaf2;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 0 0 1px #f5e5d0;
-  padding: 30px;
+  padding: 20px;
   position: relative;
-  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 90%;
+  max-width: 1200px;
+  min-height: calc(100vh - 40px);
   margin: 20px auto;
   transform: rotate(-1deg);
 }
@@ -39,49 +61,119 @@ body {
   border-radius: 10px;
 }
 
-h1 {
-  color: #ff86b3;
-  text-align: center;
-  margin-bottom: 25px;
-  font-size: 2.5em;
-  text-shadow: 2px 2px 0 #fff, 3px 3px 0 #ffd1dc;
-  transform: rotate(1deg);
-}
-
+/* ===========================
+   Game Container
+   =========================== */
 .game-container {
   display: flex;
   flex-direction: row;
   gap: 20px;
-  flex-wrap: wrap;
   justify-content: center;
+  align-items: stretch; /* Stretch children to fill the container */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+/* ===========================
+   Cat Container (Viewport)
+   =========================== */
 .cat-container {
+  flex: 2; /* Ensure the viewport takes up more space */
   position: relative;
-  width: 300px;
-  height: 400px;
+  width: clamp(400px, 50vw, 1024px);
+  height: clamp(400px, 50vw, 1024px); /* Maintain a consistent height */
+  aspect-ratio: 1 / 1;
   border: 3px solid #ffd1dc;
   border-radius: 15px;
   background-color: #fffdfa;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08),
     inset 0 0 30px rgba(255, 209, 220, 0.2);
+  margin: 0 auto;
 }
 
+.cat-shadow {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  filter: blur(8px);
+  z-index: 0;
+}
+
+/* ===========================
+   Image Assets
+   =========================== */
 .cat-base {
   position: absolute;
-  width: 220px;
-  height: 300px;
-  left: 50%;
-  top: 55%;
-  transform: translate(-50%, -50%);
-  background-image: url("https://placehold.co/220x300");
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-image: url("assets/images/gino.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   z-index: 1;
 }
 
+.accessory {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.accessory.visible {
+  opacity: 1;
+}
+
+.accessory.outfit {
+  z-index: 2;
+}
+
+.accessory.glasses {
+  z-index: 3;
+}
+
+/* ===========================
+   Stickers
+   =========================== */
+.sticker {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 10;
+}
+
+.sticker:nth-child(1) {
+  top: 20px;
+  right: 20px;
+  transform: rotate(15deg);
+  background-image: url("https://placehold.co/60x60/ffb6c1/FFF?text=♥");
+}
+
+.sticker:nth-child(2) {
+  bottom: 20px;
+  left: 20px;
+  transform: rotate(-10deg);
+  background-image: url("https://placehold.co/60x60/b0e0e6/FFF?text=★");
+}
+
+/* ===========================
+   Items Container (Buttons)
+   =========================== */
 .items-container {
+  flex: 1; /* Ensure the items container takes up space */
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -92,6 +184,7 @@ h1 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
     inset 0 0 30px rgba(255, 209, 220, 0.2);
   max-width: 300px;
+  min-height: 400px; /* Prevent it from collapsing */
 }
 
 .item-category {
@@ -99,7 +192,6 @@ h1 {
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05), 0 0 0 1px #ffd1dc;
-  transform: rotate(0.5deg);
 }
 
 .category-title {
@@ -116,6 +208,9 @@ h1 {
   gap: 10px;
 }
 
+/* ===========================
+   Item Styles
+   =========================== */
 .item {
   background-color: #fffafa;
   border: 2px dashed #ffd1dc;
@@ -149,19 +244,9 @@ h1 {
   margin-top: 5px;
 }
 
-.accessory {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.accessory.visible {
-  opacity: 1;
-}
-
+/* ===========================
+   Reset Button
+   =========================== */
 .reset-button {
   background-color: #ffb3c6;
   border: none;
@@ -183,44 +268,17 @@ h1 {
   color: #fff;
 }
 
-.cat-shadow {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 180px;
-  height: 20px;
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
-  filter: blur(8px);
-  z-index: 0;
-}
-
-.sticker {
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  z-index: 10;
-}
-
-.sticker:nth-child(1) {
-  top: 20px;
-  right: 20px;
-  transform: rotate(15deg);
-  background-image: url("https://placehold.co/60x60/ffb6c1/FFF?text=♥");
-}
-
-.sticker:nth-child(2) {
-  bottom: 20px;
-  left: 20px;
-  transform: rotate(-10deg);
-  background-image: url("https://placehold.co/60x60/b0e0e6/FFF?text=★");
-}
-
+/* ===========================
+   Responsive Layout
+   =========================== */
 @media (max-width: 768px) {
   .game-container {
     flex-direction: column;
+    align-items: center;
+  }
+
+  .cat-container {
+    width: 90%;
+    height: auto;
   }
 }

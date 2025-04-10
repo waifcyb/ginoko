@@ -1,22 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Define the items for each category
     const items = {
-        hats: [
-            { name: 'Pink Hat', image: 'https://placehold.co/50x50/ffb6c1/FFF?text=Hat' },
-            { name: 'Blue Hat', image: 'https://placehold.co/50x50/b0e0e6/FFF?text=Hat2' }
-        ],
         accessories: [
-            { name: 'Pink Glasses', image: 'https://placehold.co/50x50/ffb6c1/FFF?text=Glasses' },
-            { name: 'Blue Glasses', image: 'https://placehold.co/50x50/b0e0e6/FFF?text=Glasses2' }
+            { name: 'Sunnies', image: 'assets/images/sunnies.png' }
         ],
         outfits: [
-            { name: 'Pink Outfit', image: 'https://placehold.co/50x50/ffb6c1/FFF?text=Outfit' },
-            { name: 'Blue Outfit', image: 'https://placehold.co/50x50/b0e0e6/FFF?text=Outfit2' }
+            { name: 'Sailor Outfit', image: 'assets/images/sailor.png' }
         ]
     };
 
-    // Set cat base image - replace with an actual cat silhouette in a real implementation
-    document.querySelector('.cat-base').style.backgroundImage = "url('https://placehold.co/220x300/FFF/836953?text=Cat')";
+    // Set cat base image
+    document.querySelector('.cat-base').style.backgroundImage = "url('assets/images/gino.png')";
 
     // Populate the item grids
     for (const category in items) {
